@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * При запросе также можно указать точные дни ухода в отпуск,
  * тогда должен проводиться расчет отпускных с учётом праздников и выходных.
  */
-
 @SpringBootApplication
 public class VacationPayCalculateApplication {
 
