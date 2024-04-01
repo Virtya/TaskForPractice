@@ -1,6 +1,7 @@
 package ru.virtya.vacationPayCalculate.controllers;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import ru.virtya.vacationPayCalculate.services.VacationPayCalculateService;
 
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class VacationPayCalculateController {
@@ -35,6 +37,9 @@ public class VacationPayCalculateController {
                                  @RequestParam("startDate") Optional<String> startDate,
                                  @RequestParam("endDate") Optional<String> endDate
     ) {
+        log.info("Handle request to calculate vacation pay");
+        log.debug("Request parameters: {}, {}", avgSalaryPerYear, vacationDays);
+        log.debug("Optional parameters: {}, {}", startDate, endDate);
 
         if (startDate.isPresent() && endDate.isPresent()) {
             vacationDays = vacationPayCalculateInDaysService.getPaidDays(startDate.get(), endDate.get());
