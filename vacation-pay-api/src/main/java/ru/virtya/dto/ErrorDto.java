@@ -1,4 +1,4 @@
-package ru.virtya.vacationPayCalculate.dto;
+package ru.virtya.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

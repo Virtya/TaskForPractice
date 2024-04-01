@@ -1,5 +1,6 @@
 package ru.virtya.vacationPayCalculate.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 @Component
 public class VacationPayCalculateInDaysService {
 
@@ -49,6 +51,7 @@ public class VacationPayCalculateInDaysService {
                 .collect(Collectors.toList());
 
 
+        log.info("Paid days - {}, quantity of paid days - {}", paidVacationDays, paidVacationDays.size());
         return paidVacationDays.size();
 
     }
