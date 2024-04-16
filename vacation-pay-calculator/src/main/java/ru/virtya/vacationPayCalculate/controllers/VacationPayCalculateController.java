@@ -2,15 +2,19 @@ package ru.virtya.vacationPayCalculate.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.virtya.vacationPayCalculate.services.VacationPayCalculateInDaysService;
 import ru.virtya.vacationPayCalculate.services.VacationPayCalculateService;
 
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.Optional;
 
 @Slf4j
+@Validated
 @RestController
 @RequiredArgsConstructor
 public class VacationPayCalculateController {
@@ -32,8 +36,12 @@ public class VacationPayCalculateController {
      * @return DTO с полями message и vacationPay
      */
     @GetMapping("/calculate")
-    public Object getVacationPay(@RequestParam("averageSalary") double avgSalaryPerYear,
-                                 @RequestParam("vacationDays") int vacationDays,
+    public Object getVacationPay(@RequestParam("averageSalary")
+                                 @PositiveOrZero(message = "Your average salary per year should be greater or equal 0")
+                                 double avgSalaryPerYear,
+                                 @RequestParam("vacationDays")
+                                 @Positive(message = "Your vacation days should be greater than 0")
+                                 int vacationDays,
                                  @RequestParam("startDate") Optional<String> startDate,
                                  @RequestParam("endDate") Optional<String> endDate
     ) {

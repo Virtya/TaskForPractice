@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.virtya.dto.ErrorDto;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -34,6 +35,14 @@ public class GlobalControllerExceptionHandler {
 
     @ExceptionHandler(DateTimeParseException.class)
     public @ResponseBody ResponseEntity<ErrorDto> handleDateTimeParse(DateTimeParseException e) {
+        log.error(e.getMessage());
+        return new ResponseEntity<>(
+                new ErrorDto(e.getMessage(), LocalDate.now()), HttpStatus.INTERNAL_SERVER_ERROR
+        );
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public @ResponseBody ResponseEntity<ErrorDto> handleMethodArgumentNotValid(ConstraintViolationException e) {
         log.error(e.getMessage());
         return new ResponseEntity<>(
                 new ErrorDto(e.getMessage(), LocalDate.now()), HttpStatus.INTERNAL_SERVER_ERROR
