@@ -12,16 +12,6 @@ public class VacationPayCalculateService {
 
     public VacationPayDto getCalculateVacationPay(double avgSalaryPerYear, int vacationDays) {
 
-        if (vacationDays <= 0) {
-            log.error("Vacation days <= 0");
-            throw new IllegalArgumentException("Your vacation days should be greater than 0");
-        }
-
-        if (avgSalaryPerYear < 0) {
-            log.error("Salary < 0");
-            throw new IllegalArgumentException("Your average salary per year should be greater or equal 0");
-        }
-
         double avgSalaryPerDay = avgSalaryPerYear / DAYS_IN_MONTH_AVERAGE;
         log.info("Average earnings per day - {} rubles", avgSalaryPerDay);
 
