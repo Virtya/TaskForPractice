@@ -39,7 +39,7 @@ pipeline {
         }
         stage("Publish") {
             steps {
-                bat 'copy "target\\vacation-pay-calculator-0.0.1-SNAPSHOT-jar-with-dependencies.jar" "E:\\ВГУ\\Practice5sem\\vacation-pay-calculator-1.0.jar"'
+                bat 'copy "target\\vacation-pay-calculator-0.0.1-SNAPSHOT-jar-with-dependencies.jar" "E:\\ForPractice\\vacation-pay-calculator-1.0.jar"'
             }
         }
     }
