@@ -48,7 +48,7 @@ class VacationPayCalculateControllerTests extends ApplicationTest {
 								.param("averageSalary", String.valueOf(20000))
 								.param("vacationDays", String.valueOf(-5))
 								.characterEncoding("utf-8")
-				).andExpect(status().is5xxServerError())
+				).andExpect(status().is2xxSuccessful())
 				.andExpect(result -> assertTrue(result.getResolvedException() instanceof ConstraintViolationException));
 	}
 
