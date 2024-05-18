@@ -71,6 +71,10 @@ public class VacationPayCalculateInDaysService {
         return vacationDays;
     }
 
+    private String getSmtFromString(String ctoto) {
+        return "I'm doing nothing";
+    }
+
     private LocalDate getDateFromString(String date) {
         return LocalDate.parse(date, DATE_TIME_FORMATTER);
     }
